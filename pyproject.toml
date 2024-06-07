@@ -6,9 +6,28 @@ authors = ["Meghana"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
+nerfstudio = "^1.1.0"
+addict = "^2.4.0"
+pandas = "^2.2.2"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project.entry-points.'nerfstudio.method_configs']
+kanerf = 'kanerf.kanerf.model.config:kanerf_method'
+
+[project.scripts]
+# Note, add entrypoint name to nerfstudio/scripts/completions/install.py to include CLI completion
+ns-install-cli = "nerfstudio.scripts.completions.install:entrypoint"
+ns-process-data = "nerfstudio.scripts.process_data:entrypoint"
+ns-download-data = "nerfstudio.scripts.downloads.download_data:entrypoint"
+ns-train = "nerfstudio.scripts.train:entrypoint"
+ns-viewer = "nerfstudio.scripts.viewer.run_viewer:entrypoint"
+ns-eval = "nerfstudio.scripts.eval:entrypoint"
+ns-render = "nerfstudio.scripts.render:entrypoint"
+ns-export = "nerfstudio.scripts.exporter:entrypoint"
+ns-dev-test = "nerfstudio.scripts.github.run_actions:entrypoint"
+ns-dev-sync-viser-message-defs = "nerfstudio.scripts.viewer.sync_viser_message_defs:entrypoint"
